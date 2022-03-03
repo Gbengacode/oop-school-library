@@ -87,12 +87,12 @@ end
 def permission_checker(parent_permission, age, name)
   case parent_permission
   when 'y'
-    student = Student.new(age, name, parent_permission: false)
+    student = Student.new(age, name)
     puts 'Person created successfully'
     @people.push(student)
 
   when 'n'
-    student = Student.new(age, name)
+    student = Student.new(age, name, parent_permission: false)
     puts 'Person created successfully'
     @people.push(student)
 
