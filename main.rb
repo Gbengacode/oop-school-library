@@ -108,7 +108,7 @@ def create_student
   print 'Name:'
   name = gets.chomp
   print 'Has parent permission ? [Y/N]'
-  parent_permission = gets.downcase.chomp
+  parent_permission = gets.chomp.downcase
   permission_checker(parent_permission, age, name)
 end
 
