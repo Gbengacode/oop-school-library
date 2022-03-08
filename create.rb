@@ -12,6 +12,7 @@ module Create
       student = Student.new(age, name)
       puts 'Person created successfully'
       @people.push(student)
+    
 
     when 'n'
       student = Student.new(age, name, parent_permission: false)
@@ -49,5 +50,6 @@ module Create
       puts 'Please enter a valid option'
     end
   end
+
 
 end
