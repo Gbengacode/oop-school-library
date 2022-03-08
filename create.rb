@@ -1,5 +1,7 @@
+require_relative('./list')
+
 module Create
-  def create_student
+  def self.create_student(store)
     print 'age:'
     age = gets.chomp
     print 'Name:'
@@ -10,21 +12,21 @@ module Create
     case parent_permission
     when 'y'
       student = Student.new(age, name)
+      store.save(student)
       puts 'Person created successfully'
-      @people.push(student)
 
     when 'n'
       student = Student.new(age, name, parent_permission: false)
+      store.save(student)
       puts 'Person created successfully'
-      @people.push(student)
 
     else
       puts 'Please enter a valid option'
-      create_student
+      Create.create_student(store)
     end
   end
 
-  def create_teacher
+  def self.create_teacher(store)
     print 'age:'
     age = gets.chomp
     print 'Name:'
@@ -32,46 +34,46 @@ module Create
     print 'Specialization:'
     specialization = gets.chomp
     teacher = Teacher.new(age, name, specialization)
-    @people.push(teacher)
+    store.save(teacher)
     puts 'Teacher successfully created'
   end
 
-  def create_person
+  def self.create_person(store)
     puts 'Do you want to create a student(1) or a teacher(2)?'
     option = gets.chomp
     case option
     when '1'
-      create_student
+      Create.create_student(store)
     when '2'
-      create_teacher
+      Create.create_teacher(store)
 
     else
       puts 'Please enter a valid option'
     end
   end
 
-  def create_book
+  def self.create_book(store)
     print 'enter book title:'
     title = gets.chomp
     print 'enter book author:'
     author = gets.chomp
     book = Book.new(title, author)
-    @books.push(book)
+    store.save(book)
   end
 
-  def create_rental
+  def self.create_rental(store)
     puts 'Select a book by number '
-    list_book
-    main_method if @books.length.zero?
+    store.list_book
+    Create.create_book(store) if store.books.length.zero?
     book_index = gets.chomp.to_i
     puts 'Select a person by number: '
-    list_people
-    main_method if @people.length.zero?
+    store.list_people
+    create_people(store) if store.people.length.zero?
     person_index = gets.chomp.to_i
     print 'Enter date: '
     date = gets.chomp
-    Rental.new(date, @people[person_index - 1], @books[book_index - 1])
+    Rental.new(date, store.people[person_index - 1], store.books[book_index - 1])
     puts "Rental  succesfully  created-
-      book: #{@books[book_index - 1].title}, Person: #{@people[person_index - 1].name}, Date: #{date}"
+      book: #{store.books[book_index - 1].title}, Person: #{store.people[person_index - 1].name}, Date: #{date}"
   end
 end
