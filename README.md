@@ -40,6 +40,10 @@ git clone git@github.com:Gbengacode/oop-school-library.git
 - GitHub: [@githubhandle](https://github.com/gbengacode)
 
 
+👤 **Ritta Sweta**
+
+- GitHub: [@githubhandle](https://github.com/Buyaki01)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
