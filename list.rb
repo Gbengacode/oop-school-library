@@ -1,19 +1,26 @@
+require_relative('./load_data')
 class List
-  attr_accessor :people, :books
+  attr_accessor :people, :books, :rentals
 
   def initialize
     @people = []
     @books = []
+    @rentals = []
   end
 
   def save(item)
     item.is_a?(Person) ? @people.push(item) : @books.push(item)
+    @rental.push(item) if item.is_a?(Rental)
+  end
+
+  def save_rental(item)
+    @rentals.push(item)
   end
 
   def list_rental
     puts 'Select a person by number: '
     list_people
-    main_method if @people.length.zero?
+    list_people if @people.length.zero?
     person_index = gets.chomp.to_i
     rentals = @people[person_index - 1].rentals
     if rentals.length.zero?
@@ -37,6 +44,7 @@ class List
   end
 
   def list_people
+    puts @people
     if @people.length.zero?
       puts "There's no person, Please add a person first"
 
