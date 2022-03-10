@@ -24,14 +24,5 @@ module LoadData
       []
     end
   end
-
-  def self.load_rentals(store)
-    if File.exist?('rental.json')
-      JSON.parse(File.read('rental.json')).map do |rental|
-        store.rentals.push(rental)
-      end
-    else
-      []
-    end
-  end
+  # your turn
 end

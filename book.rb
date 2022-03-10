@@ -2,7 +2,7 @@ require_relative('./rental')
 # rubocop:disable Style/ClassVars
 class Book
   @@id = 1
-  attr_accessor :title, :author, :rentals
+  attr_accessor :title, :author, :rentals, :id
 
   def initialize(title, author)
     @id = @@id
