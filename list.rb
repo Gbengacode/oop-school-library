@@ -44,7 +44,6 @@ class List
   end
 
   def list_people
-    puts @people
     if @people.length.zero?
       puts "There's no person, Please add a person first"
 

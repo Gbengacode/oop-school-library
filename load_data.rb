@@ -15,7 +15,6 @@ module LoadData
       JSON.parse(File.read('person.json')).map do |person|
         individual = if person['json_class'] == 'Teacher'
                        Teacher.new(person['age'], person['specialization'], person['name'])
-
                      else
                        Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
                      end
@@ -26,10 +25,11 @@ module LoadData
     end
   end
 
-  def self.load_rentals(_store)
+  def self.load_rentals(store)
     if File.exist?('rental.json')
       JSON.parse(File.read('rental.json')).map do |rental|
-        rental['person']['id']
+        rental['person']
+        store.people
       end
     else
       []
