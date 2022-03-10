@@ -1,6 +1,27 @@
 require_relative('./list')
+require_relative('./save_data')
 
 module Create
+  def self.permission_checker(parent_permission, age, name, store)
+    case parent_permission
+    when 'y'
+      student = Student.new(age, name)
+      store.save(student)
+      puts 'Person created successfully'
+      SaveData.save_person(store)
+    when 'n'
+      student = Student.new(age, name, parent_permission: false)
+      store.save(student)
+      SaveData.save_person(store)
+
+      puts 'Person created successfully'
+
+    else
+      puts 'Please enter a valid option'
+      Create.create_student(store)
+    end
+  end
+
   def self.create_student(store)
     print 'age:'
     age = gets.chomp
@@ -8,22 +29,7 @@ module Create
     name = gets.chomp
     print 'Has parent permission ? [Y/N]'
     parent_permission = gets.chomp.downcase
-
-    case parent_permission
-    when 'y'
-      student = Student.new(age, name)
-      store.save(student)
-      puts 'Person created successfully'
-
-    when 'n'
-      student = Student.new(age, name, parent_permission: false)
-      store.save(student)
-      puts 'Person created successfully'
-
-    else
-      puts 'Please enter a valid option'
-      Create.create_student(store)
-    end
+    permission_checker(parent_permission, age, name, store)
   end
 
   def self.create_teacher(store)
@@ -35,6 +41,7 @@ module Create
     specialization = gets.chomp
     teacher = Teacher.new(age, name, specialization)
     store.save(teacher)
+    SaveData.save_person(store)
     puts 'Teacher successfully created'
   end
 
@@ -59,6 +66,7 @@ module Create
     author = gets.chomp
     book = Book.new(title, author)
     store.save(book)
+    SaveData.save_book(store)
   end
 
   def self.create_rental(store)
@@ -72,7 +80,10 @@ module Create
     person_index = gets.chomp.to_i
     print 'Enter date: '
     date = gets.chomp
-    Rental.new(date, store.people[person_index - 1], store.books[book_index - 1])
+
+    new_rent = Rental.new(date, store.people[person_index - 1], store.books[book_index - 1])
+    store.save_rental(new_rent)
+    SaveData.save_rental(store)
     puts "Rental  succesfully  created-
       book: #{store.books[book_index - 1].title}, Person: #{store.people[person_index - 1].name}, Date: #{date}"
   end
