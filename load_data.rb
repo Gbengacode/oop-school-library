@@ -24,5 +24,19 @@ module LoadData
       []
     end
   end
-  # your turn
+
+  def self.load_rentals(store)
+    if File.exist?('rental.json')
+      JSON.parse(File.read('rental.json')).map do |rental|
+        person_id = rental['person']['id']
+        book_id = rental['book']['id']
+        rental_date = rental['date']
+        person = store.people.select { |p| p.id == person_id }[0]
+        book = store.books.select { |b| b.id == book_id }[0]
+        Rental.new(rental_date, person, book)
+      end
+    else
+      []
+    end
+  end
 end
