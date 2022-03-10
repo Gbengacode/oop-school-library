@@ -1,8 +1,8 @@
 require_relative('../teacher')
 require_relative('../person')
 
-describe do
-  context 'When testing the book class do' do
+describe Teacher do
+  context 'When testing the teacher class do' do
     age = 23
     name = 'emmanuel'
     specialization = 'maths'

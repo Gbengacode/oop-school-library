@@ -1,6 +1,6 @@
 require_relative '../student'
 
-describe do
+describe Student do
   context 'When testing the student class do' do
     age = 10
     name = 'john'
