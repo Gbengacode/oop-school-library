@@ -1,6 +1,6 @@
 require_relative '../book'
 
-describe do
+describe Book do
   context 'When testing the book class do' do
     title = 'mytitle'
     author = 'myauthor'
