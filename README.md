@@ -32,7 +32,11 @@ git clone git@github.com:Gbengacode/oop-school-library.git
 
 ```
 
+### to run test
 
+- open terminal and run the commands
+-  gem install rspec                (install rspec test library)
+- rspec file_directory/file_name   (run the test files)
 ## Author
 
 👤 **Emmanuel Gbenga**
