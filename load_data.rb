@@ -28,8 +28,7 @@ module LoadData
   def self.load_rentals(store)
     if File.exist?('rental.json')
       JSON.parse(File.read('rental.json')).map do |rental|
-        rental['person']
-        store.people
+        store.rentals.push(rental)
       end
     else
       []

@@ -1,8 +1,6 @@
 require_relative('./list')
 require_relative('./save_data')
 
-
-
 module Create
   def self.permission_checker(parent_permission, age, name, store)
     case parent_permission
@@ -15,9 +13,9 @@ module Create
       student = Student.new(age, name, parent_permission: false)
       store.save(student)
       SaveData.save_person(store)
-  
+
       puts 'Person created successfully'
-  
+
     else
       puts 'Please enter a valid option'
       Create.create_student(store)
@@ -82,7 +80,7 @@ module Create
     person_index = gets.chomp.to_i
     print 'Enter date: '
     date = gets.chomp
-   
+
     new_rent = Rental.new(date, store.people[person_index - 1], store.books[book_index - 1])
     store.save_rental(new_rent)
     SaveData.save_rental(store)

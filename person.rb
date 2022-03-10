@@ -3,7 +3,6 @@ require_relative('./rental')
 # rubocop:disable Style/ClassVars
 class Person
   attr_accessor :name, :age, :rentals, :id
- 
 
   @@id = 1
   def initialize(age, name = 'Unknown', parent_permission: true)
